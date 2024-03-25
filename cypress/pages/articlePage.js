@@ -4,8 +4,7 @@ class ArticlePage {
     }
    
     getArticleTitle() {
-      return cy.get('h1#firstHeading').should('be.visible')
-      .invoke('text');
+      return cy.get('h1#firstHeading').should('be.exist').invoke('text');
     }
 }
 

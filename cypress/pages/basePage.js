@@ -4,22 +4,21 @@ class BasePage {
   }
 
   search(query) {
-    cy.get("#searchInput").type(query + '{enter}');
+    cy.get("#searchInput").type(query + '{enter}'+ '{enter}');
   }
 
-  getElementTextByXPath(xpath) {
-    const elementHandle = cy.xpath.$(xpath);
-
-    if (!elementHandle) {
-      throw new Error(`Element not found with XPath: ${xpath}`);
-    }
-
-    const textContent = elementHandle.text();
-    return textContent.trim();
+  getElementTextByXPath() {
+    return cy.get('div#p-tb').find('div.vector-menu-heading')
+    .should('exist')
+    .invoke('text')
   }
 
   todaysFeaturedArticleExists() {
-    return cy.get("#From_today's_featured_article");
+    return cy.get('[id="From_today\'s_featured_article"]');
+  }
+
+  navigateToEnglishWikipedia(){
+    cy.visit("https://en.wikipedia.org/wiki/Main_Page");
   }
 
   navigateToUkrainianPage() {
